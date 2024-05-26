@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_page_concepts",
+  "info": {
+    "displayName": "concepts",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
