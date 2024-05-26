@@ -376,6 +376,13 @@ export interface ApiLandingPageLandingPage extends Schema.SingleType {
   attributes: {
     logo: Attribute.Media & Attribute.Required;
     header: Attribute.Component<'page.header'>;
+    sectionAboutProject: Attribute.Component<'page.section-about-project'>;
+    sectionTech: Attribute.Component<'page.section-tech'>;
+    sectionConcepts: Attribute.Component<'page.section-concepts'>;
+    sectionModules: Attribute.Component<'page.section-modules'> &
+      Attribute.Required;
+    sectionAgenda: Attribute.Component<'page.section-agenda'>;
+    pricingBox: Attribute.Component<'page.pricing-box'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
