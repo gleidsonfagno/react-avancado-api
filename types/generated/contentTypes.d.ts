@@ -362,45 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiLandingPageLandingPage extends Schema.SingleType {
-  collectionName: 'landing_pages';
-  info: {
-    singularName: 'landing-page';
-    pluralName: 'landing-pages';
-    displayName: 'landingPage';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    logo: Attribute.Media & Attribute.Required;
-    header: Attribute.Component<'page.header'>;
-    sectionAboutProject: Attribute.Component<'page.section-about-project'>;
-    sectionTech: Attribute.Component<'page.section-tech'>;
-    sectionConcepts: Attribute.Component<'page.section-concepts'>;
-    sectionModules: Attribute.Component<'page.section-modules'> &
-      Attribute.Required;
-    sectionAgenda: Attribute.Component<'page.section-agenda'>;
-    pricingBox: Attribute.Component<'page.pricing-box'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::landing-page.landing-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::landing-page.landing-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -827,6 +788,83 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAuthorAuthor extends Schema.CollectionType {
+  collectionName: 'authors';
+  info: {
+    singularName: 'author';
+    pluralName: 'authors';
+    displayName: 'author';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    photo: Attribute.Media & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    role: Attribute.String & Attribute.Required;
+    socialLinks: Attribute.Component<'page.social-links', true> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLandingPageLandingPage extends Schema.SingleType {
+  collectionName: 'landing_pages';
+  info: {
+    singularName: 'landing-page';
+    pluralName: 'landing-pages';
+    displayName: 'landingPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    logo: Attribute.Media & Attribute.Required;
+    header: Attribute.Component<'page.header'>;
+    sectionAboutProject: Attribute.Component<'page.section-about-project'>;
+    sectionTech: Attribute.Component<'page.section-tech'>;
+    sectionConcepts: Attribute.Component<'page.section-concepts'>;
+    sectionModules: Attribute.Component<'page.section-modules'> &
+      Attribute.Required;
+    sectionAgenda: Attribute.Component<'page.section-agenda'>;
+    pricingBox: Attribute.Component<'page.pricing-box'>;
+    sectionAboutUs: Attribute.Component<'page.section-about-us'>;
+    sectionReviews: Attribute.Component<'page.section-reviews'>;
+    sectionFaq: Attribute.Component<'page.section-faq'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::landing-page.landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::landing-page.landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -837,7 +875,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::landing-page.landing-page': ApiLandingPageLandingPage;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -846,6 +883,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::author.author': ApiAuthorAuthor;
+      'api::landing-page.landing-page': ApiLandingPageLandingPage;
     }
   }
 }

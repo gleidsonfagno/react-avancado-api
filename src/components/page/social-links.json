@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_page_social_links",
+  "info": {
+    "displayName": "socialLinks",
+    "icon": "oneToMany",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "enumeration",
+      "enum": [
+        "GitHUb",
+        "Twitter",
+        "Dribble",
+        "Linkedin",
+        "Facebook"
+      ],
+      "default": "Twitter",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

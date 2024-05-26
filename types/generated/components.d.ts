@@ -66,6 +66,31 @@ export interface PagePricingBox extends Schema.Component {
   };
 }
 
+export interface PageQuestions extends Schema.Component {
+  collectionName: 'components_page_questions';
+  info: {
+    displayName: 'questions';
+    icon: 'question';
+  };
+  attributes: {
+    question: Attribute.Text & Attribute.Required;
+    answer: Attribute.Blocks & Attribute.Required;
+  };
+}
+
+export interface PageReviews extends Schema.Component {
+  collectionName: 'components_page_reviews';
+  info: {
+    displayName: 'reviews';
+    icon: 'star';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    text: Attribute.Text & Attribute.Required & Attribute.Private;
+    photo: Attribute.Media;
+  };
+}
+
 export interface PageSectionAboutProject extends Schema.Component {
   collectionName: 'components_page_section_about_projects';
   info: {
@@ -76,6 +101,22 @@ export interface PageSectionAboutProject extends Schema.Component {
     title: Attribute.String & Attribute.Required;
     description: Attribute.Blocks & Attribute.Required;
     image: Attribute.Media & Attribute.Required;
+  };
+}
+
+export interface PageSectionAboutUs extends Schema.Component {
+  collectionName: 'components_page_section_aboutuses';
+  info: {
+    displayName: 'sectionAboutUs';
+    icon: 'user';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    authors: Attribute.Relation<
+      'page.section-about-us',
+      'oneToMany',
+      'api::author.author'
+    >;
   };
 }
 
@@ -103,6 +144,25 @@ export interface PageSectionConcepts extends Schema.Component {
   };
 }
 
+export interface PageSectionFaq extends Schema.Component {
+  collectionName: 'components_page_section_faqs';
+  info: {
+    displayName: 'sectionFaq';
+    icon: 'question';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    questions: Attribute.Component<'page.questions', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+        },
+        number
+      >;
+  };
+}
+
 export interface PageSectionModules extends Schema.Component {
   collectionName: 'components_page_section_modules';
   info: {
@@ -116,6 +176,25 @@ export interface PageSectionModules extends Schema.Component {
       Attribute.SetMinMax<
         {
           min: 2;
+        },
+        number
+      >;
+  };
+}
+
+export interface PageSectionReviews extends Schema.Component {
+  collectionName: 'components_page_section_reviews';
+  info: {
+    displayName: 'sectionReviews';
+    icon: 'star';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    reviews: Attribute.Component<'page.reviews', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 4;
         },
         number
       >;
@@ -143,6 +222,24 @@ export interface PageSectionTech extends Schema.Component {
   };
 }
 
+export interface PageSocialLinks extends Schema.Component {
+  collectionName: 'components_page_social_links';
+  info: {
+    displayName: 'socialLinks';
+    icon: 'oneToMany';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.Enumeration<
+      ['GitHUb', 'Twitter', 'Dribble', 'Linkedin', 'Facebook']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Twitter'>;
+    url: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+  };
+}
+
 export interface PageTechIcons extends Schema.Component {
   collectionName: 'components_page_tech_icons';
   info: {
@@ -163,11 +260,17 @@ declare module '@strapi/types' {
       'page.header': PageHeader;
       'page.modules': PageModules;
       'page.pricing-box': PagePricingBox;
+      'page.questions': PageQuestions;
+      'page.reviews': PageReviews;
       'page.section-about-project': PageSectionAboutProject;
+      'page.section-about-us': PageSectionAboutUs;
       'page.section-agenda': PageSectionAgenda;
       'page.section-concepts': PageSectionConcepts;
+      'page.section-faq': PageSectionFaq;
       'page.section-modules': PageSectionModules;
+      'page.section-reviews': PageSectionReviews;
       'page.section-tech': PageSectionTech;
+      'page.social-links': PageSocialLinks;
       'page.tech-icons': PageTechIcons;
     }
   }
